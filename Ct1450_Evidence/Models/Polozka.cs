@@ -2,7 +2,18 @@
 {
     public class Polozka
     {
-        public DateOnly Datum { get; set; }
+        public Polozka() 
+        { 
+            Datum = DateOnly.FromDateTime(DateTime.Now);
+        }
+        public Polozka(DateOnly datum, double naklady,  double vynosy)
+        {
+            Datum = datum;
+            Naklady = naklady;
+            Vynosy = vynosy;
+        }
+
+        public DateOnly Datum { get; set; } //= DateOnly.FromDateTime(DateTime.Now);
         private double naklady;
 
         public double Naklady
@@ -19,5 +30,10 @@
             set { vynosy = Math.Abs(value); }
         }
         public double Zisk => Vynosy - Naklady;
+
+        public override string ToString()
+        {
+            return $"Datum: {Datum} - Náklady:{Naklady} - Výnosy:{Vynosy} - Zisk:{Zisk}";
+        }
     }
 }
